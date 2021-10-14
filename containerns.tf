@@ -16,6 +16,8 @@ output "ns" {
 }
 
 resource "kubernetes_pod" "mycontainer" {
+
+  count = var.mycontainer.podname == "" ? 0 : 1
   metadata {
     name = var.mycontainer.podname
     namespace = var.mycontainer.namespace == "" ? "${var.namespace}-namespace-${var.how_many}" : var.mycontainer.namespace
