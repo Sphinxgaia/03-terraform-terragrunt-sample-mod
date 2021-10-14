@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "ns" {
   # Terraform quick if statement
-  count = deploy_namespace ? 1 : 0
+  count = var.deploy_namespace ? 1 : 0
   metadata {
     name = "${var.namespace}-namespace-${var.how_many}"
     annotations = {}
