@@ -1,4 +1,9 @@
 
+variable "deploy_namespace" {
+  description = "Your prefix namespace"
+  type        = bool
+  default     = "false"
+}
 variable "namespace" {
   description = "Your prefix namespace"
   type        = string
@@ -21,6 +26,7 @@ variable "mycontainer" {
   description = "Définition d'un container"
   type = object({
     podname = string
+    namespace = string
     labels  = map(string)
     image   = string
     name    = string

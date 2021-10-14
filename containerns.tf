@@ -1,5 +1,6 @@
 resource "kubernetes_namespace" "ns" {
-
+  # Terraform quick if statement
+  count = deploy_namespace ? 1 : 0
   metadata {
     name = "${var.namespace}-namespace-${var.how_many}"
     annotations = {}
@@ -10,11 +11,14 @@ resource "kubernetes_namespace" "ns" {
   }
 }
 
+output "ns" {
+  value = "${var.namespace}-namespace-${var.how_many}"
+}
 
 resource "kubernetes_pod" "mycontainer" {
   metadata {
     name = var.mycontainer.podname
-    namespace = "${var.namespace}-namespace-${var.how_many}"
+    namespace = var.mycontainer.namespace == "" ? "${var.namespace}-namespace-${var.how_many}" : var.mycontainer.namespace
     labels = merge( var.mycontainer.labels ,{
       "type" = "std-container"
       "app.kubernetes.io/managed-by" = "Terraform"
