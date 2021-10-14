@@ -1,7 +1,7 @@
 resource "kubernetes_namespace" "ns" {
 
   metadata {
-    name = "${var.my_ns}-namespace-${var.how_many}"
+    name = "${var.namespace}-namespace-${var.how_many}"
     annotations = {}
     labels = {
       "app.kubernetes.io/managed-by" = "Terraform"
@@ -14,7 +14,7 @@ resource "kubernetes_namespace" "ns" {
 resource "kubernetes_pod" "mycontainer" {
   metadata {
     name = var.mycontainer.podname
-    namespace = "${var.my_ns}-namespace-${var.how_many}"
+    namespace = "${var.namespace}-namespace-${var.how_many}"
     labels = merge( var.mycontainer.labels ,{
       "type" = "std-container"
       "app.kubernetes.io/managed-by" = "Terraform"
