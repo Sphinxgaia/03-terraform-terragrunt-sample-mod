@@ -32,4 +32,13 @@ variable "mycontainer" {
     name    = string
     port    = number
   })
+
+  default = {
+    podname = ""
+    namespace = ""
+    labels  = {}
+    image   = ""
+    name    = ""
+    port    = 0
+  }
 }
