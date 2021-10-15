@@ -12,7 +12,7 @@ resource "kubernetes_namespace" "ns" {
 }
 
 output "ns" {
-  value = var.deploy_namespace ? "" : "${var.namespace}-namespace-${var.how_many}"
+  value = var.deploy_namespace ? "${var.namespace}-namespace-${var.how_many}" : "" 
 }
 
 resource "kubernetes_pod" "mycontainer" {
